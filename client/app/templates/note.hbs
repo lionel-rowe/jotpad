@@ -1,0 +1,41 @@
+
+{{!-- {{debugger}} --}}
+
+<div class="editor-ui">
+
+  <header>
+    <div class="details">
+      {{ input
+        value=model.title
+        change="updatetitle" }}
+
+      <div>
+        Saved {{formatDate model.updated_at}}
+      </div>
+    </div>
+    <div>
+      <a {{action "saveAndQuit" '/'}} href="/">Home</a>
+    </div>
+
+  </header>
+
+  <div class="panes">
+    <div class="pane">
+      {{ textarea
+        value=model.content
+        change="updateContent" }}
+    </div>
+    <div class="rendered pane">
+      <div class="markdown-body">
+        {{formatMarkdown model.content}}
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <input class="btn" type="button" value="Save" {{ action "saveNote" }}>
+  </footer>
+
+</div>
+
+{{outlet}}
