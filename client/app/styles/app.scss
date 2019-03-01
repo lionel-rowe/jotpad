@@ -1,7 +1,5 @@
 
-* {
-  box-sizing: border-box;
-}
+// global vars
 
 $page-bg: #faf8f6;
 
@@ -13,21 +11,23 @@ $paper-gutter: 50px;
 
 $container-max-width: 700px;
 
+$navbar-height: 50px;
+
+// Global styles
+
+* {
+  box-sizing: border-box;
+}
+
+
 body {
   margin: 0;
   font-family: $sans;
-  // color: #323;
   color: #111;
   background: $page-bg;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: $container-max-width;
-}
-
 h1, h2, h3, h4, h5, h6 {
-  // color: #434;
   color: #222;
 }
 
@@ -37,6 +37,109 @@ time, abbr {
     text-decoration-style: dotted;
   }
 }
+
+.noclicks {
+  pointer-events: none;
+  user-select: none;
+}
+
+.unstyled-link {
+  // all: unset !important;
+  color: unset !important;
+  text-decoration: unset !important;
+  &:hover {
+    text-decoration: unset !important;
+  }
+}
+
+@mixin avatar($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+
+
+// navbar
+
+nav {
+  display: flex;
+  background: #000077;
+  color: white;
+  height: $navbar-height;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 -10px 10px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  .title {
+    font-weight: bold;
+  }
+
+  .avatar {
+    @include avatar(35px);
+    border: 1px solid rgba(255, 255, 255, 0.8)
+  }
+
+}
+
+.spacer {
+  height: $navbar-height;
+}
+
+
+
+// markdown (overrides)
+
+.markdown-body {
+  background: #fff;
+  // margin: 0px -1px;
+
+  .heading {
+
+    color: #9a3636;
+    position: relative;
+
+    &:hover::before {
+      position: absolute;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.3);
+      // font-weight: normal;
+      content: '§';
+    }
+  }
+
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  pre, code {
+    // font-family: $monospace;
+  }
+
+  pre {
+    padding: 5px;
+    overflow: auto;
+  }
+}
+
+
+
+
+// `notes`
+
+.container {
+  margin: 0 auto;
+  max-width: $container-max-width;
+}
+
 
 @media (hover: none) {
   [title]:hover::after {
@@ -50,11 +153,6 @@ time, abbr {
     content: attr(title);
     // transition: opacity 1s;
   }
-}
-
-.noclicks {
-  pointer-events: none;
-  user-select: none;
 }
 
 .paper {
@@ -106,55 +204,17 @@ time, abbr {
   padding: 20px $paper-gutter;
 }
 
-.unstyled-link {
-  // all: unset !important;
-  color: unset !important;
-  text-decoration: unset !important;
-  &:hover {
-    text-decoration: unset !important;
-  }
-}
 
 
-.markdown-body {
-  background: #fff;
-  // margin: 0px -1px;
-
-  .heading {
-
-    color: #9a3636;
-    position: relative;
-
-    &:hover::before {
-      position: absolute;
-      left: -1em;
-      color: rgba(0, 0, 0, 0.3);
-      // font-weight: normal;
-      content: '§';
-    }
-  }
-
-  .checklist {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  pre, code {
-    // font-family: $monospace;
-  }
-
-  pre {
-    padding: 5px;
-    overflow: auto;
-  }
-}
+// `note`
 
 .editor-ui {
 
-  background: #eee;
+  // background: #eee;
 
   $header-height: 100px;
   $footer-height: 50px;
+  // $footer-height: 50px;
 
   header {
     display: flex;
@@ -183,18 +243,18 @@ time, abbr {
     height: $footer-height;
   }
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
 
   .panes {
     display: flex;
 
     .pane {
       flex: 0 0 50%;
-      height: calc(100vh - #{$header-height} - #{$footer-height});
+      height: calc(100vh - #{$navbar-height} - #{$header-height} - #{$footer-height});
 
       &.rendered {
         overflow: auto;
@@ -237,4 +297,7 @@ time, abbr {
   padding: 5px 15px;
   margin: 0 10px 0 auto;
 }
+
+
+
 
