@@ -2,6 +2,25 @@
 
 module.exports = function(environment) {
   let ENV = {
+
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': [
+          'home',
+          'plus',
+          'edit',
+          'user',
+          'undo',
+          // redo: 'undo' + CSS transform: scaleX(-1);
+          // 'bold',
+          // 'italic',
+          // 'heading',
+
+        ]
+      }
+    },
+
+
     modulePrefix: 'mdnotes',
     environment,
     rootURL: '/',
