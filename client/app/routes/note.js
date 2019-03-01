@@ -7,7 +7,7 @@ export default Route.extend({
   init(...args) {
     this._super(...args);
     this.interval = setInterval(() => {
-      this.actions.saveNote.call(this);
+      this.actions.pushOrPull.call(this);
     }, 10000);
   },
   transitionTo(...args) {
@@ -25,17 +25,23 @@ export default Route.extend({
       note.set('title', newTitle);
       this.set('model', note);
     },
-    saveNote() {
+    pushOrPull() {
       const note = this.get('context');
 
-      return note.save().then(res => {
-        // console.log(res);
-      }, err => {
-        console.log(err);
-      });
+      if (note.hasDirtyAttributes) {
+
+        return note.save().then(_res => {
+          // console.log(res);
+        }, _err => {
+          // console.log(err);
+        });
+
+      } else {
+        return note.reload();
+      }
     },
-    saveAndQuit(nextUrl) {
-      this.actions.saveNote.call(this)
+    pushOrPullAndQuit(nextUrl) {
+      this.actions.pushOrPull.call(this)
         .then(() => {
           this.transitionTo(nextUrl);
         });
