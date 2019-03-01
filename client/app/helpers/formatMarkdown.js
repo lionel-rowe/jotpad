@@ -34,7 +34,7 @@ deadRenderer.link = (href, title, text) => {
   return `<a tabindex="-1" href="${href}">${text}</a>`;
 };
 
-deadRenderer.heading = (text, level, raw, slugger) => {
+deadRenderer.heading = (text, level, _raw, _slugger) => {
   return `<h${level} class="heading">${text}</h${level}>\n`;
 };
 
