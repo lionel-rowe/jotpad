@@ -4,7 +4,9 @@ class Api::V1::BaseController < ActionController::Base
   # before_action :check_token, except: [:login, :signup]
 
   # protect_from_forgery with: :null_session
-  # # skip_before_action :verify_authenticity_token
+
+  skip_before_action :verify_authenticity_token
+
 
   # # include Pundit
   # # Prevent CSRF attacks by raising an exception.    # Prevent CSRF attacks by raising an exception.
@@ -26,6 +28,10 @@ class Api::V1::BaseController < ActionController::Base
   # end
   private
 
+
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
   # def user_not_authorized
   #   flash[:alert] = "You are not authorized to perform this action."
   #   redirect_to(root_path)

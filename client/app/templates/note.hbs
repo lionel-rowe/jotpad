@@ -10,11 +10,11 @@
         change="updatetitle" }}
 
       <div>
-        Saved {{formatDate model.updated_at}}
+        Updated {{formatDate model.updated_at}}
       </div>
     </div>
     <div>
-      <a {{action "saveAndQuit" '/'}} href="/">Home</a>
+      <a {{action "pushOrPullAndQuit" "/"}} href="/">Home</a>
     </div>
 
   </header>
@@ -33,7 +33,7 @@
   </div>
 
   <footer>
-    <input class="btn" type="button" value="Save" {{ action "saveNote" }}>
+
   </footer>
 
 </div>

@@ -7,21 +7,21 @@
 
   {{#each model as |note|}}
     <div class="paper-container">
-      <a href="/notes/{{note.id}}" class="unstyled-link">
+      {{#link-to "note" note class="unstyled-link"}}
         <div class="paper">
           <div class="details">
             <div class="title">
               {{note.title}}
             </div>
             <div>
-              Edited {{formatDate note.updated_at}}
+              Updated {{formatDate note.updated_at}}
             </div>
           </div>
           <div class="paper-body markdown-body noclicks">
             {{formatMarkdown note.content false}}
           </div>
         </div>
-      </a>
+      {{/link-to}}
     </div>
   {{/each}}
 

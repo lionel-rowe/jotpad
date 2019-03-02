@@ -1,3 +1,39 @@
-{{!-- main layout --}}
+{{head-layout}}
+
+
+<nav>
+  {{#link-to "notes" class="unstyled-link"}}
+    {{!-- TODO: accomodate for note model autosave --}}
+    <div class="title">
+      mdnotes
+    </div>
+  {{/link-to}}
+
+  {{#if session.isAuthenticated}}
+    <a {{action 'invalidateSession'}}>
+      <div
+        role="button"
+        class="avatar navbar-btn"
+        tabindex='0'
+        style={{safeCssBg currentUser.user.gravatar}}
+      ></div>
+    </a>
+
+    {{#if menu.open}}
+      {{#click-outside action=(action "closeMenu")}}
+        Your HTML...
+      {{/click-outside}}
+    {{/if}}
+
+  {{else}}
+    {{!-- {{#link-to 'login'}}Login{{/link-to}} --}}
+  {{/if}}
+
+</nav>
+
+<div class="spacer"></div>
+
+{{!-- … --}}
+{{!-- {{debugger}} --}}
 
 {{outlet}}
