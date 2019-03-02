@@ -3,6 +3,18 @@
 module.exports = function(environment) {
   let ENV = {
 
+    contentSecurityPolicy: {
+      'default-src': "'self' *",
+      'script-src': "'self' *",
+      'connect-src': "'self' *"
+    },
+
+    'ember-simple-auth': {
+      routeAfterAuthentication: '/',
+      routeIfAlreadyAuthenticated: '/'
+    },
+
+
     fontawesome: {
       icons: {
         'free-solid-svg-icons': [
@@ -43,6 +55,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.API_HOST = 'http://localhost:3000';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

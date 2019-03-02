@@ -1,10 +1,18 @@
 class Api::V1::NotesController < Api::V1::BaseController
-  skip_before_action :verify_authenticity_token # TODO
+
+  # skip_before_action :verify_authenticity_token # TODO
 
   before_action :set_note, only: [ :show, :update, :destroy ]
 
   def index
-    @notes = Note.order(updated_at: :desc)
+    # p current_api_v1_user
+    # p current_user
+    # p JSON.generate(request)
+
+    notes_all = Note.where(owner: current_resource_owner)
+    # notes_all = Note.all
+
+    @notes = notes_all.order(updated_at: :desc)
   end
 
   def show
@@ -38,8 +46,12 @@ class Api::V1::NotesController < Api::V1::BaseController
   private
 
   def set_note
+
     @note = Note.find(params[:id])
-    # authorize @note  # TODO: re-add
+
+    if @note.owner != current_resource_owner
+      raise
+    end             # TODO: use doorkeeper properly
   end
 
   def note_params

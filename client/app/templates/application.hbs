@@ -1,19 +1,39 @@
-{{!-- main layout --}}
+{{head-layout}}
+
 
 <nav>
-  <div class="title">
-    mdnotes
-  </div>
+  {{#link-to "notes" class="unstyled-link"}}
+    {{!-- TODO: accomodate for note model autosave --}}
+    <div class="title">
+      mdnotes
+    </div>
+  {{/link-to}}
 
-  <div
-    class="avatar"
-    tabindex='0'
-    style="background-image: url(https://www.gravatar.com/avatar/36d5414d873a0ddd6b1536368159def9?s=80&d=identicon)" {{!-- TODO: un-hardcode --}}
-  >
-  </div>
+  {{#if session.isAuthenticated}}
+    <a {{action 'invalidateSession'}}>
+      <div
+        role="button"
+        class="avatar navbar-btn"
+        tabindex='0'
+        style={{safeCssBg currentUser.user.gravatar}}
+      ></div>
+    </a>
+
+    {{#if menu.open}}
+      {{#click-outside action=(action "closeMenu")}}
+        Your HTML...
+      {{/click-outside}}
+    {{/if}}
+
+  {{else}}
+    {{!-- {{#link-to 'login'}}Login{{/link-to}} --}}
+  {{/if}}
 
 </nav>
 
 <div class="spacer"></div>
+
+{{!-- … --}}
+{{!-- {{debugger}} --}}
 
 {{outlet}}

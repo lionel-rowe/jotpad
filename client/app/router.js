@@ -7,10 +7,15 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('notes', { path: '/' }, () => {
-    this.route('new', { path: '/notes/new' });
-    this.route('note', { path: '/notes/:id' });
-  });
+  this.route('login');
+
+  // this.route('authenticated', { path: '' }, () => {
+    this.route('notes', { path: '/' }, () => {
+      this.route('new', { path: '/notes/new' });
+      this.route('note', { path: '/notes/:id' });
+    });
+  // });
+
 });
 
 export default Router;

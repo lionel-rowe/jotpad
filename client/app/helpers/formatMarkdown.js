@@ -3,10 +3,34 @@ import { htmlSafe } from '@ember/template';
 import marked from 'marked';
 import * as hljs from 'highlightjs';
 
+import safeURI from './safeURI';
+
 const liveRenderer = new marked.Renderer();
 const deadRenderer = new marked.Renderer();
 
-const safeURI = href => encodeURI(href).replace(/%25/g, '%');
+const checkbox = (checked) => {
+  // <label> self-closes before </li>
+  // TODO: enable (must be reliable against dupes)
+  return `<label><input type="checkbox" ${checked ? 'checked ' : ''} disabled> `;
+};
+
+const list = (body, ordered, start) => {
+  const type = ordered ? 'ol' : 'ul';
+  const startAt = (ordered && start !== 1) ? ` start="${start}"` : '';
+
+  const isChecklist =  body.trim().split(/[\r\n]+/).every(line => {
+    return line.trim().startsWith('<li><label><input type="checkbox"');
+  });
+
+  const checklistClass = (!ordered && isChecklist) ? ' class="checklist"' : '';
+
+  return `<${type}${checklistClass}${startAt}>\n${body}</${type}>\n`;
+};
+
+[liveRenderer, deadRenderer].forEach(renderer => {
+  renderer.checkbox = checkbox;
+  renderer.list = list;
+});
 
 liveRenderer.link = (href, title, text) => {
   try {
@@ -61,32 +85,13 @@ marked.setOptions({
   xhtml: false
 });
 
-// TODO: do this within Marked itself
-const parseChecklists = markdown => {
-  return markdown.replace(/(?:\s*[*-]\s+\[[xv ]\].+)+/gm, m => {
-    const lines = m.trim().split(/[\r\n]+/g)
-    return `\n\n<ul class='checklist'>${
-      lines.map(rawLine => {
-        const line = rawLine.replace(/^\s*[*-]\s+/, '');
-        const checked = line[1] !== ' ';
-
-        const content = line.slice(3).trim();
-
-        const checkbox = `<input type='checkbox' disabled${checked ? ' checked' : ''}>`
-
-        return `<li>${checkbox} ${content}</li>`;
-      }).join('\n')
-    }</ul>\n\n`;
-  })
-};
-
 const formatMarkdown = ([ markdown, isLive=true ]) => {
 
   marked.setOptions({
     renderer: isLive ? liveRenderer : deadRenderer
   })
 
-  return htmlSafe(marked(parseChecklists(markdown)));
+  return htmlSafe(marked(/*parseChecklists(*/markdown/*)*/));
 };
 
 export default helper(formatMarkdown);

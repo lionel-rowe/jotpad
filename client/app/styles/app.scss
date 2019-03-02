@@ -70,7 +70,7 @@ nav {
   height: $navbar-height;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 20px 0 5px;
   box-shadow: 0 -10px 10px 10px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -80,11 +80,16 @@ nav {
 
   .title {
     font-weight: bold;
+    padding: 10px 15px;
   }
 
   .avatar {
     @include avatar(35px);
     border: 1px solid rgba(255, 255, 255, 0.8)
+  }
+
+  .navbar-btn {
+    cursor: pointer;
   }
 
 }
