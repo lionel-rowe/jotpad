@@ -3,16 +3,18 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
   session: service(),
+  currentUser: service(),
+
+  authenticationSucceeded(...args) {
+    console.log(1);
+    this._super(...args)
+  },
 
   model(params) {
     return this.get('store').createRecord('user');
   },
   actions: {
     authenticate() {
-      // TODO
-      // const login = this.get('context');
-      // const { email, password } = login;
-
       const [ email, password ] = [ 'email', 'password' ].map(id => {
         return document.querySelector(`#${id}`).value;
       });
@@ -21,6 +23,12 @@ export default Route.extend({
         // first param actually sent by `authenticator:oauth2` as `username`
         this.set('errorMessage', reason.error || reason);
       }).then(_ => {
+
+        this.get('currentUser').load()
+          .then(() => {
+            this.controllerFor('application').set('currentUser', this.get('currentUser'));
+          });
+
         this.transitionTo('/'); // TODO: should preserve previously-navigated path
       });
 

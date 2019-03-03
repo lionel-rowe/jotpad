@@ -43,8 +43,13 @@ time, abbr {
   user-select: none;
 }
 
+.unstyled-btn {
+  background: unset !important;
+  border: unset !important;
+  padding: unset !important;
+}
+
 .unstyled-link {
-  // all: unset !important;
   color: unset !important;
   text-decoration: unset !important;
   &:hover {
@@ -115,7 +120,6 @@ nav {
       position: absolute;
       left: -1em;
       color: rgba(0, 0, 0, 0.3);
-      // font-weight: normal;
       content: '§';
     }
   }
@@ -142,6 +146,7 @@ nav {
 
 .container {
   margin: 0 auto;
+  padding: 0 15px;
   max-width: $container-max-width;
 }
 
@@ -280,10 +285,10 @@ nav {
     }
 
     @media screen and (max-width: 500px) {
-      flex-direction: column-reverse;
+      flex-direction: column;
 
       .pane {
-        height: calc((100vh - #{$header-height} - #{$footer-height}) / 2);
+        height: calc((100vh - #{$navbar-height} - #{$header-height} - #{$footer-height}) / 2);
       }
     }
 
