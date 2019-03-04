@@ -4,5 +4,9 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   content: DS.attr('string'),
   created_at: DS.attr('date'),
-  updated_at: DS.attr('date')
+  updated_at: DS.attr('date'),
+  reload: function() {
+    this.notifyPropertyChange('updated_at');
+    this._super();
+  }
 });
