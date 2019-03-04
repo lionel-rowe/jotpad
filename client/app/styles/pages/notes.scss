@@ -1,0 +1,71 @@
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: $container-max-width;
+}
+
+
+@media (hover: none) {
+  [title]:hover::after {
+    font-family: $sans;
+    font-size: 0.6rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: .3em .5em;
+    transform: translate(0, 1.6em);
+    position: absolute;
+    content: attr(title);
+    // transition: opacity 1s;
+  }
+}
+
+.paper {
+
+  background: rgba(0, 0, 120, 1);
+
+  max-height: 300px;
+  overflow: hidden;
+
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px 20px 0 0;
+  border: 1px solid #ccc;
+
+  .details {
+    padding: 5px $paper-gutter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+
+    .title {
+      font-style: italic;
+      font-weight: bold;
+    }
+  }
+}
+
+.paper-container {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &::after {
+    // fade out (see https://stackoverflow.com/questions/22666063/how-to-fade-the-edge-of-a-div-with-just-css)
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    pointer-events: none;
+    background-image: linear-gradient(to bottom, transparent, $page-bg 70%);
+    width: calc(100% + 30px);
+    height: 4em;
+  }
+}
+
+.paper-body {
+  padding: 20px $paper-gutter;
+}
+
+

@@ -33,7 +33,7 @@ module.exports = function(environment) {
     },
 
 
-    modulePrefix: 'mdnotes',
+    modulePrefix: 'jotpad',
     environment,
     rootURL: '/',
     locationType: 'auto',
