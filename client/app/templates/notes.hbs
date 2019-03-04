@@ -18,7 +18,8 @@
             </div>
           </div>
           <div class="paper-body markdown-body noclicks">
-            {{formatMarkdown note.content false}}
+            {{note._formattedUpdater}}
+            {{note.formatted}}
           </div>
         </div>
       {{/link-to}}

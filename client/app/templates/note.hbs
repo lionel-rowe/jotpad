@@ -26,7 +26,8 @@
     </div>
     <div class="rendered pane">
       <div class="markdown-body">
-        {{formatMarkdown model.content}}
+        {{model._formattedUpdater}}
+        {{model.formatted}}
         {{!-- {{debugger}} --}}
       </div>
     </div>
