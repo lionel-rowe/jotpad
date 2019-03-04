@@ -1,16 +1,21 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
+
   model(params) {
     return this.get('store').findRecord('note', params.id);
   },
-  init(...args) {
+  activate(...args) {
     this._super(...args);
     this.interval = setInterval(() => {
       this.actions.pushOrPull.call(this);
     }, 10000);
   },
-  transitionTo(...args) {
+  willTransition(...args) {
+    this.pushOrPull();
+    this._super(...args);
+  },
+  deactivate(...args) {
     clearInterval(this.interval);
     this._super(...args);
   },
@@ -40,11 +45,5 @@ export default Route.extend({
         return note.reload();
       }
     },
-    pushOrPullAndQuit(nextUrl) {
-      this.actions.pushOrPull.call(this)
-        .then(() => {
-          this.transitionTo(nextUrl);
-        });
-    }
   }
 });

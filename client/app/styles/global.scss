@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $sans;
+  color: #111;
+  background: $page-bg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+}
+
+time, abbr {
+  &[title] {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+}
+
+.noclicks {
+  pointer-events: none;
+  user-select: none;
+}
+
+.unstyled-btn {
+  background: unset !important;
+  border: unset !important;
+  padding: unset !important;
+}
+
+.unstyled-link {
+  color: unset !important;
+  text-decoration: unset !important;
+  &:hover {
+    text-decoration: unset !important;
+  }
+}
+
+@mixin avatar($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-size: cover;
+}

@@ -1,8 +1,8 @@
 {
-  "name": "mdnotes",
+  "name": "jotpad",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for mdnotes goes here",
+  "description": "Small description for jotpad goes here",
   "repository": "",
   "license": "MIT",
   "author": "",
@@ -23,6 +23,8 @@
     "@fortawesome/ember-fontawesome": "^0.1.13",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "broccoli-asset-rev": "^2.7.0",
+    "broccoli-funnel": "^2.0.2",
+    "broccoli-uglify-js": "^0.2.0",
     "ember-ajax": "^3.1.0",
     "ember-auto-import": "^1.2.21",
     "ember-cli": "~3.7.1",
@@ -46,12 +48,17 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^3.4.1",
     "ember-resolver": "^5.0.1",
+    "ember-service-worker": "^0.7.2",
+    "ember-service-worker-asset-cache": "^0.6.4",
+    "ember-service-worker-cache-fallback": "^0.6.2",
+    "ember-service-worker-index": "^0.7.0",
     "ember-simple-auth": "^1.8.1",
     "ember-source": "~3.7.0",
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "sass": "^1.17.2"
+    "sass": "^1.17.2",
+    "webpack-cli": "^3.2.3"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
@@ -59,6 +66,7 @@
   "dependencies": {
     "github-markdown-css": "^3.0.1",
     "highlightjs": "^9.12.0",
+    "insane": "^2.6.2",
     "marked": "^0.6.1",
     "moment": "^2.24.0"
   }

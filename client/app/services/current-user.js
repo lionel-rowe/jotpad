@@ -1,15 +1,13 @@
-import Ember from 'ember';
+import Service, { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
 
-const { inject: { service }, RSVP } = Ember;
-
-export default Ember.Service.extend({
+export default Service.extend({
   session: service('session'),
   store: service(),
 
   load() {
     if (this.get('session.isAuthenticated')) {
       return this.get('store').queryRecord('user', { me: true }).then((user) => {
-        console.log(user)
         this.set('user', user);
       });
     } else {

@@ -1,10 +1,11 @@
 import { helper } from '@ember/component/helper';
-import safeURI from './safeURI';
+import { htmlSafe } from '@ember/template';
+import safeURI from '../utils/safeURI';
 
 const safeCssBg = uri => {
   const uriSafe = safeURI(uri)
 
-  return Ember.String.htmlSafe(
+  return htmlSafe(
     `background-image: url(${
       uriSafe
     })`

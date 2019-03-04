@@ -2,32 +2,33 @@
 {{!-- {{debugger}} --}}
 
 <div class="editor-ui">
-
   <header>
     <div class="details">
-      {{ input
+      {{
+        input
         value=model.title
-        change="updatetitle" }}
-
+        change="updatetitle"
+      }}
       <div>
         Updated {{formatDate model.updated_at}}
       </div>
-    </div>
-    <div>
-      <a {{action "pushOrPullAndQuit" "/"}} href="/">Home</a>
     </div>
 
   </header>
 
   <div class="panes">
     <div class="pane">
-      {{ textarea
+      {{
+        textarea
         value=model.content
-        change="updateContent" }}
+        change="updateContent"
+      }}
     </div>
     <div class="rendered pane">
       <div class="markdown-body">
-        {{formatMarkdown model.content}}
+        {{model._formattedUpdater}}
+        {{model.formatted}}
+        {{!-- {{debugger}} --}}
       </div>
     </div>
   </div>
