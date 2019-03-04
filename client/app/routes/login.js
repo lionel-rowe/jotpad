@@ -5,12 +5,7 @@ export default Route.extend({
   session: service(),
   currentUser: service(),
 
-  authenticationSucceeded(...args) {
-    console.log(1);
-    this._super(...args)
-  },
-
-  model(params) {
+  model() {
     return this.get('store').createRecord('user');
   },
   actions: {
@@ -22,7 +17,7 @@ export default Route.extend({
       this.get('session').authenticate('authenticator:oauth2', email, password).catch((reason) => {
         // first param actually sent by `authenticator:oauth2` as `username`
         this.set('errorMessage', reason.error || reason);
-      }).then(_ => {
+      }).then(() => {
 
         this.get('currentUser').load()
           .then(() => {

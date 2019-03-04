@@ -1,6 +1,5 @@
 {{head-layout}}
 
-
 <nav>
   {{#link-to "notes" class="unstyled-link"}}
     {{!-- TODO: accomodate for note model autosave --}}
@@ -10,7 +9,7 @@
   {{/link-to}}
 
   {{#if session.isAuthenticated}}
-    <button {{action "invalidateSession"}} class='unstyled-btn' aria-label='Menu'>
+    <button {{action "invalidateSession"}} class="unstyled-btn" aria-label="Menu">
       <div
         class="avatar navbar-btn"
         style={{safeCssBg currentUser.user.gravatar}}

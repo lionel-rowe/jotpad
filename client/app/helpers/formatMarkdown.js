@@ -1,5 +1,6 @@
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/template';
+// import { debounce } from '@ember/runloop';
 import marked from 'marked';
 import insane from 'insane';
 import * as hljs from 'highlightjs';
@@ -25,7 +26,11 @@ const insaneOptions = {
   },
   allowedSchemes: ['http', 'https', 'mailto'],
   allowedTags: [
-    'a', 'article', 'b', 'blockquote', 'br', 'caption', 'code', 'del', 'details', 'div', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'li', 'main', 'ol', 'p', 'pre', 'section', 'span', 'strike', 'strong', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'th', 'thead', 'tr', 'u', 'ul'
+    'a', 'article', 'b', 'blockquote', 'br', 'caption', 'code', 'del',
+    'details', 'div', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i',
+    'img', 'input', 'ins', 'kbd', 'label', 'li', 'main', 'ol', 'p', 'pre',
+    'section', 'span', 'strike', 'strong', 'sub', 'summary', 'sup', 'table',
+    'tbody', 'td', 'th', 'thead', 'tr', 'u', 'ul'
   ],
   filter: node => {
     [
