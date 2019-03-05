@@ -1,6 +1,13 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins 'https://www.jotpad.me'
+      resource '*', headers: :any, methods: [:get, :post, :put, :patch, :options]
+    end
+  end
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
