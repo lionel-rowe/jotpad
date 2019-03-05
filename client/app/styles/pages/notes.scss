@@ -20,7 +20,6 @@
 }
 
 .paper {
-
   background: rgba(0, 0, 120, 1);
 
   max-height: 300px;
@@ -38,8 +37,15 @@
     color: white;
 
     .title {
+      padding-right: 0.5em;
       font-style: italic;
       font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .updated {
+      flex: 0 0 auto;
     }
   }
 }
@@ -69,3 +75,18 @@
 }
 
 
+@include max(xs) {
+  .paper {
+    // zoom: 90%;
+    height: 250px;
+
+    // .details {
+    //   // font-size: .85em;
+    // }
+
+    .paper-body, .details {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

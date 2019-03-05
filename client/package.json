@@ -15,13 +15,14 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
-    "test": "ember test"
+    "test": "ember test",
+    "predeploy": "ember build --environment=production",
+    "deploy": "node scripts/deploy.js"
   },
   "devDependencies": {
     "@ember/jquery": "^0.6.0",
     "@ember/optional-features": "^0.6.3",
-    "@fortawesome/ember-fontawesome": "^0.1.13",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/fontawesome-free": "^5.7.2",
     "broccoli-asset-rev": "^2.7.0",
     "broccoli-funnel": "^2.0.2",
     "broccoli-uglify-js": "^0.2.0",
@@ -55,6 +56,7 @@
     "ember-simple-auth": "^1.8.1",
     "ember-source": "~3.7.0",
     "eslint-plugin-ember": "^5.2.0",
+    "gh-pages": "^2.0.1",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
     "sass": "^1.17.2",

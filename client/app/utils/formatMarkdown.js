@@ -141,6 +141,7 @@ marked.setOptions({
 
 
 const formatMarkdown = (markdown, isLive=true) => {
+  // console.time()
 
   markdown = markdown.replace(/\[\[(.+?)\]\]/g, '<kbd>$1</kbd>');
 
@@ -148,7 +149,10 @@ const formatMarkdown = (markdown, isLive=true) => {
     renderer: isLive ? liveRenderer : deadRenderer
   })
 
-  return htmlSafe(sanitize(marked(markdown)));
+  const output = htmlSafe(sanitize(marked(markdown)));
+  // console.timeEnd()
+
+  return output;
 };
 
 export default formatMarkdown;

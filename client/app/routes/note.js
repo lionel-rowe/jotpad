@@ -8,18 +8,42 @@ export default Route.extend({
   activate(...args) {
     this._super(...args);
     this.interval = setInterval(() => {
-      this.actions.pushOrPull.call(this);
+      this._pushOrPull.call(this);
     }, 10000);
+    window.onbeforeunload = () => {
+      this._pushOrPull.call(this);
+    };
   },
-  willTransition(...args) {
-    this.pushOrPull();
-    this._super(...args);
+
+  _pushOrPull() {
+    const note = this.get('context');
+
+    if (note.hasDirtyAttributes) {
+
+      return note.save().then(res => {
+        return res;
+      }, err => {
+        return err;
+      });
+
+    } else {
+      return note.reload();
+    }
+
   },
+
   deactivate(...args) {
     clearInterval(this.interval);
+    window.onbeforeunload = null;
     this._super(...args);
   },
+
   actions: {
+    willTransition(transition) {
+      this._pushOrPull.call(this);
+
+      // transition.abort();
+    },
     updateContent(newContent) {
       const note = this.get('context');
       note.set('content', newContent);
@@ -29,21 +53,6 @@ export default Route.extend({
       const note = this.get('context');
       note.set('title', newTitle);
       this.set('model', note);
-    },
-    pushOrPull() {
-      const note = this.get('context');
-
-      if (note.hasDirtyAttributes) {
-
-        return note.save().then(_res => {
-          // console.log(res);
-        }, _err => {
-          // console.log(err);
-        });
-
-      } else {
-        return note.reload();
-      }
     },
   }
 });

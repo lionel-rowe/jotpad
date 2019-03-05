@@ -3,14 +3,23 @@
 
 <div class="editor-ui">
   <header>
-    <div class="details">
+    <div
+      class="details"
+      style="margin-left: -0.3em;" {{!-- TODO --}}
+    >
       {{
         input
+        maxlength="255"
         value=model.title
         change="updatetitle"
+        style="margin-left: -0.3em;"
       }}
       <div>
-        Updated {{formatDate model.updated_at}}
+        <i class="far fa-edit" aria-label="Updated"
+
+        style="padding-left: 0.3em;" {{!-- TODO --}}
+        ></i>
+        {{formatDate model.updated_at}}
       </div>
     </div>
 
@@ -20,6 +29,7 @@
     <div class="pane">
       {{
         textarea
+        maxlength="65536"
         value=model.content
         change="updateContent"
       }}

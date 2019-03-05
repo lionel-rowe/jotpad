@@ -9,3 +9,34 @@ $paper-gutter: 50px;
 $container-max-width: 700px;
 
 $navbar-height: 50px;
+
+
+// per bootstrap
+
+$breakpoints-up: (
+  xs: 0px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$breakpoints-down: (
+  xs: 575px,
+  sm: 767px,
+  md: 991px,
+  lg: 1199px
+);
+
+@mixin max($size) {
+  @media screen and (max-width: #{map-get($breakpoints-down, $size)}) {
+    @content;
+  }
+}
+
+
+@mixin min($size) {
+  @media screen and (min-width: #{map-get($breakpoints-up, $size)}) {
+    @content;
+  }
+}

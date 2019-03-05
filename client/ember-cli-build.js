@@ -20,6 +20,19 @@ module.exports = function(defaults) {
   app.import('node_modules/highlightjs/styles/github.css');
   app.import('node_modules/github-markdown-css/github-markdown.css');
 
+
+  //fa
+  app.import('node_modules/@fortawesome/fontawesome-free/css/all.min.css');
+
+  app.import('vendor/webfonts/fa-solid-900.ttf');
+  app.import('vendor/webfonts/fa-regular-400.ttf');
+
+  app.import('vendor/webfonts/fa-solid-900.woff');
+  app.import('vendor/webfonts/fa-regular-400.woff');
+
+  app.import('vendor/webfonts/fa-solid-900.woff2');
+  app.import('vendor/webfonts/fa-regular-400.woff2');
+
   // app.import('vendor/workers/formatMarkdown.js', { outputFile: 'assets/workers/formatMarkdown.js' })
 
   // Use `app.import` to add additional libraries to the generated

@@ -20,6 +20,13 @@ module.exports = {
       {
         argsIgnorePattern: '^_'
       }
+    ],
+    'no-warning-comments': [
+      'error',
+      {
+        terms: ['todo', 'fixme'],
+        location: 'anywhere'
+      }
     ]
   },
   overrides: [

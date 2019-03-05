@@ -14,23 +14,25 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: '/'
     },
 
+    // fontawesome: {
+    //   icons: {
+    //     'free-solid-svg-icons': [
+    //       'home',
+    //       'plus',
+    //       'edit',
+    //       'user',
+    //       'undo',
+    //       // 'pencil',
+    //       'pencil-square',
+    //       'pencil-square-o',
+    //       // redo: 'undo' + CSS transform: scaleX(-1);
+    //       // 'bold',
+    //       // 'italic',
+    //       // 'heading',
 
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': [
-          'home',
-          'plus',
-          'edit',
-          'user',
-          'undo',
-          // redo: 'undo' + CSS transform: scaleX(-1);
-          // 'bold',
-          // 'italic',
-          // 'heading',
-
-        ]
-      }
-    },
+    //     ]
+    //   }
+    // },
 
 
     modulePrefix: 'jotpad',
@@ -77,6 +79,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.API_HOST = 'https://jotpad.herokuapp.com';
   }
 
   return ENV;
