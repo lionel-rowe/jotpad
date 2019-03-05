@@ -57,7 +57,6 @@ var a={name:"ember-data",initialize:t.default}
 e.default=a}),define("jotpad/instance-initializers/ember-simple-auth",["exports"],function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 e.default={name:"ember-simple-auth",initialize:function(){}}}),define("jotpad/instance-initializers/head-browser",["exports"],function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 e.default={name:"head-browser",initialize:function(){}}}),define("jotpad/mixins/click-outside",["exports","ember-click-outside/mixin"],function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})}),define("jotpad/models/note",["exports","ember-data","jotpad/utils/formatMarkdown"],function(e,t,a){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-Ember.run.debounce
 var n=t.default.Model.extend({title:t.default.attr("string"),content:t.default.attr("string"),created_at:t.default.attr("date"),updated_at:t.default.attr("date"),formatted:Ember.computed("content",function(){return(0,a.default)(this.get("content"))}),reload:function(){this.notifyPropertyChange("updated_at"),this._super()}})
 e.default=n}),define("jotpad/models/user",["exports","ember-data"],function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var a=t.default.Model.extend({email:t.default.attr("string"),gravatar:t.default.attr("string"),password:t.default.attr("string")})
@@ -121,4 +120,4 @@ return e=e.replace(/\[\[(.+?)\]\]/g,"<kbd>$1</kbd>"),t.default.setOptions({rende
 e.default=p}),define("jotpad/utils/safeURI",["exports"],function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=function(e){return encodeURI(e).replace(/%25/g,"%")}
 e.default=t}),define("jotpad/config/environment",[],function(){try{var e="jotpad/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),a={default:JSON.parse(unescape(t))}
-return Object.defineProperty(a,"__esModule",{value:!0}),a}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}}),runningTests||require("jotpad/app").default.create({name:"jotpad",version:"0.0.0+89035462"})
+return Object.defineProperty(a,"__esModule",{value:!0}),a}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}}),runningTests||require("jotpad/app").default.create({name:"jotpad",version:"0.0.0+d65de79c"})
