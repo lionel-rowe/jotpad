@@ -18,6 +18,38 @@
   <body>
     
 
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+      // ----------------------------------------------------------------------
+      // This script checks to see if a redirect is present in the query string
+      // and converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      (function(l) {
+        if (l.search) {
+          var q = {};
+          l.search.slice(1).split('&').forEach(function(v) {
+            var a = v.split('=');
+            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+          });
+          if (q.p !== undefined) {
+            window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + (q.p || '') +
+              (q.q ? ('?' + q.q) : '') +
+              l.hash
+            );
+          }
+        }
+      }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
+
     <script src="/assets/vendor-0518bf810b45e84d473fc72e81d57249.js" integrity="sha256-yjEtV2qazujhLxq6Xi+K0teLQDQgj1NOd8eY3vU1YMM= sha512-sGEUSv/JPft4Rm2ZcFSmOW0oLegeQw98g/dL1rXe3Cyhk9en9uQk8sHqCbHss8jLqTbX+EPhl7LYwHF7zALlwA==" ></script>
     <script src="/assets/jotpad-32225e354eeafe4336ea87f86d70e79c.js" integrity="sha256-B2kJ630emhkCgt8Ymu7FMCZqlv5lldQMxmnHgf7Fezw= sha512-91tTzfuLaCbxhFNt9VUwsnz/zPn6eB1+t4xUc9tgjpX4Nft8/twPpBBwvALg0k3/QSTvpzBN/AMjg6EXwZ4Drg==" ></script>
 
