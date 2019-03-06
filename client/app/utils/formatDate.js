@@ -1,4 +1,3 @@
-import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/template';
 
 import dayjs from 'dayjs';
@@ -6,7 +5,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
-const formatDate = ([ date ]) => {
+const formatDate = (date) => {
   const _date = new Date(date);
 
   return htmlSafe(`<time datetime="${
@@ -18,4 +17,4 @@ const formatDate = ([ date ]) => {
   }</time>`);
 }
 
-export default helper(formatDate);
+export default formatDate;
