@@ -78,7 +78,7 @@
 @include max(xs) {
   .paper {
     // zoom: 90%;
-    height: 250px;
+    max-height: 250px;
 
     // .details {
     //   // font-size: .85em;
