@@ -1,7 +1,4 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
-import { htmlSafe } from '@ember/template';
-import formatMarkdown from '../utils/formatMarkdown';
 // import { throttle } from '@ember/runloop';
 
 // const throttle = Ember.run.debounce;
@@ -12,12 +9,6 @@ export default DS.Model.extend({
   content: DS.attr('string'),
   created_at: DS.attr('date'),
   updated_at: DS.attr('date'),
-
-  formatted: computed('content', function() {
-    // this.set('formatted', formatMarkdown(this.get('content')));
-
-    return formatMarkdown(this.get('content'));
-  }),
 
   // _markUp: function() {
   //   this.set('formatted', formatMarkdown(this.get('content')));

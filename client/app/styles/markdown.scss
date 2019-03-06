@@ -32,19 +32,13 @@
 
 [data-line] {
   display: inline;
-  // padding: 0 !important;
-  // margin: 0 !important;
-
-  // .line {
-
-  // }
 
   &::before {
     content: attr(data-line);
     display: inline-block;
     width: 1.5em;
-    color: rgba(0, 0, 0, 0.4);
-    border-right: 2px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
     margin-right: 3px;
   }
 }

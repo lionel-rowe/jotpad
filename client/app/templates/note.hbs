@@ -5,21 +5,18 @@
   <header>
     <div
       class="details"
-      style="margin-left: -0.3em;" {{!-- TODO --}}
     >
       {{
         input
         maxlength="255"
         value=model.title
         change="updatetitle"
-        style="margin-left: -0.3em;"
       }}
       <div>
-        <i class="far fa-edit" aria-label="Updated"
-
-        style="padding-left: 0.3em;" {{!-- TODO --}}
-        ></i>
-        {{formatDate model.updated_at}}
+        {{
+          last-updated
+          time=model.updated_at
+        }}
       </div>
     </div>
 
@@ -36,9 +33,13 @@
     </div>
     <div class="rendered pane">
       <div class="markdown-body">
-        {{model._formattedUpdater}}
-        {{model.formatted}}
-        {{!-- {{debugger}} --}}
+
+      {{
+        rendered-html
+        input=model.content
+        live=true
+      }}
+
       </div>
     </div>
   </div>

@@ -14,13 +14,18 @@
               {{note.title}}
             </div>
             <div class="updated">
-              <i class="far fa-edit" aria-label="Updated"></i>
-              {{formatDate note.updated_at}}
+              {{
+                last-updated
+                time=note.updated_at
+              }}
             </div>
           </div>
           <div class="paper-body markdown-body noclicks">
-            {{note._formattedUpdater}}
-            {{note.formatted}}
+            {{
+              rendered-html
+              input=note.content
+              live=false
+            }}
           </div>
         </div>
       {{/link-to}}

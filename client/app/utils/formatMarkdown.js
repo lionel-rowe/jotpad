@@ -12,10 +12,19 @@ import 'prismjs/components/prism-markdown.min.js';
 
 import safeURI from './safeURI';
 
-const liveRenderer = new marked.Renderer();
-const deadRenderer = new marked.Renderer();
+document.removeEventListener('DOMContentLoaded', Prism.highlightAll);
+document.removeEventListener('DOMContentLoaded', Prism.fileHighlight);
 
 Prism.plugins.customClass.prefix('prism-');
+
+Prism.manual = true;
+
+Prism.highlightAllUnder = (...args) => {
+  // console.log(args)
+};
+
+const liveRenderer = new marked.Renderer();
+const deadRenderer = new marked.Renderer();
 
 const insaneOptions = {
   allowedAttributes: {
@@ -129,11 +138,13 @@ deadRenderer.heading = (text, level, _raw, _slugger) => {
 
 marked.setOptions({
   highlight: function(code, lang) {
+
     const _lang = lang.trim().toLowerCase();
 
     if (typeof Prism.languages[_lang] !== 'object') {
       return code;
     } else {
+
       return Prism.highlight(code, Prism.languages[_lang], _lang)
         .split(/\r?\n/).map((line, idx) => {
           return `<div data-line="${idx + 1}">${line}</div>`;
