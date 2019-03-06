@@ -4,7 +4,8 @@ import { htmlSafe } from '@ember/template';
 import formatMarkdown from '../utils/formatMarkdown';
 // import { throttle } from '@ember/runloop';
 
-const debounce = Ember.run.debounce;
+// const throttle = Ember.run.debounce;
+// const debounce = Ember.run.debounce;
 
 export default DS.Model.extend({
   title: DS.attr('string'),

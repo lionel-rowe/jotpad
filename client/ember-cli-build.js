@@ -5,8 +5,18 @@ const log = require('broccoli-stew').log;
 
 // const webpack = require('webpack');
 
+const Funnel = require('broccoli-funnel');
+
+
+const BroccoliMergeTrees = require('broccoli-merge-trees');
+
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
+
+    // treeShaking: {
+    //   enabled: true
+    // },
+
     'ember-service-worker': {
       enabled: false
     },
@@ -17,21 +27,33 @@ module.exports = function(defaults) {
     }
   });
 
-  app.import('node_modules/highlightjs/styles/github.css');
+  // app.import('node_modules/highlightjs/styles/github.css');
   app.import('node_modules/github-markdown-css/github-markdown.css');
 
+  app.import('vendor/prism/prism.css');
 
   //fa
-  app.import('node_modules/@fortawesome/fontawesome-free/css/all.min.css');
+  app.import('vendor/fa/all.css');
 
-  app.import('vendor/webfonts/fa-solid-900.ttf');
-  app.import('vendor/webfonts/fa-regular-400.ttf');
+  const fontawesome = new Funnel('vendor/fa/webfonts', {
+      srcDir: '/',
+      // files: [
+      //   'fa-solid-900.ttf',
+      //   'fa-regular-400.ttf',
+      //   'fa-solid-900.woff',
+      //   'fa-regular-400.woff',
+      //   'fa-solid-900.woff2',
+      //   'fa-regular-400.woff2'
+      // ],
+      // include: ['fa-regular-400']
+      destDir: '/webfonts'
+  });
 
-  app.import('vendor/webfonts/fa-solid-900.woff');
-  app.import('vendor/webfonts/fa-regular-400.woff');
+// module.exports = mergeTrees([
+//     app.toTree(),
+//     fontawesome
+// ]);
 
-  app.import('vendor/webfonts/fa-solid-900.woff2');
-  app.import('vendor/webfonts/fa-regular-400.woff2');
 
   // app.import('vendor/workers/formatMarkdown.js', { outputFile: 'assets/workers/formatMarkdown.js' })
 
@@ -50,7 +72,12 @@ module.exports = function(defaults) {
 
   const tree = app.toTree()
 
-  const loggedTree = log(tree, { output: 'tree', label: 'tree' });
+  const mergedTree = new BroccoliMergeTrees([
+    tree,
+    fontawesome
+  ]);
+
+  const loggedTree = log(mergedTree, { output: 'tree', label: 'tree' });
 
   return loggedTree;
 };
