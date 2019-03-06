@@ -17,7 +17,8 @@
     "start": "ember serve",
     "test": "ember test",
     "predeploy": "ember build --environment=production",
-    "deploy": "node scripts/deploy.js"
+    "// deploy": "node scripts/deploy.js",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@ember/jquery": "^0.6.0",
