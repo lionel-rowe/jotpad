@@ -20,7 +20,10 @@ Prism.plugins.customClass.prefix('prism-');
 Prism.manual = true;
 
 Prism.highlightAllUnder = (...args) => {
-  // console.log(args)
+  // noop
+  // kludge - function runs automatically even when manual set to auto
+  // setting to noop prevents bug in which highlighting happens twice
+  // on first page load
 };
 
 const liveRenderer = new marked.Renderer();
@@ -164,7 +167,6 @@ marked.setOptions({
 
 
 const formatMarkdown = (markdown, isLive=true) => {
-  // console.time()
 
   markdown = markdown.replace(/\[\[(.+?)\]\]/g, '<kbd>$1</kbd>');
 
@@ -173,7 +175,6 @@ const formatMarkdown = (markdown, isLive=true) => {
   })
 
   const output = htmlSafe(sanitize(marked(markdown)));
-  // console.timeEnd()
 
   return output;
 };
