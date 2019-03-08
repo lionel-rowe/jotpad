@@ -5,14 +5,8 @@ class Api::V1::NotesController < Api::V1::BaseController
   before_action :set_note, only: [ :show, :update, :destroy ]
 
   def index
-    # p current_api_v1_user
-    # p current_user
-    # p JSON.generate(request)
-
-    notes_all = Note.where(owner: current_resource_owner)
-    # notes_all = Note.all
-
-    @notes = notes_all.order(updated_at: :desc)
+    my_notes = Note.where(owner: current_resource_owner)
+    @notes = my_notes.order(updated_at: :desc)
   end
 
   def show
@@ -28,7 +22,7 @@ class Api::V1::NotesController < Api::V1::BaseController
 
   def create
     @note = Note.new(note_params)
-    # authorize @note # TODO: re-add
+    @note.update(owner: current_resource_owner)
 
     if @note.save
       render :show, status: :created
@@ -46,16 +40,15 @@ class Api::V1::NotesController < Api::V1::BaseController
   private
 
   def set_note
-
     @note = Note.find(params[:id])
 
     if @note.owner != current_resource_owner
-      raise
+      render_error
     end             # TODO: use doorkeeper properly
   end
 
   def note_params
-    params.require(:data).require(:attributes).permit(:title, :content)
+    params.require(:data).require(:attributes).permit(:title, :content, :owner)
   end
 
   def render_error
