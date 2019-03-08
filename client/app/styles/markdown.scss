@@ -2,8 +2,11 @@
   // overrides `github-markdown-css` defaults
   background: #fff;
 
-  .heading {
+  h1, h2, h3, h4, h5, h6, b, strong, table th, dl dt {
+    font-weight: bold !important;
+  }
 
+  .heading {
     color: #9a3636;
     position: relative;
 
