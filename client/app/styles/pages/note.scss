@@ -3,12 +3,14 @@
   // background: #eee;
 
   $header-height: 100px;
-  $footer-height: 50px;
+  $footer-height: 0px;
   // $footer-height: 50px;
 
   header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
 
     padding: 20px;
     input {
@@ -33,11 +35,11 @@
     height: $footer-height;
   }
 
-  // position: fixed;
+  position: fixed;
   // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
   .panes {
     display: flex;

@@ -2,6 +2,13 @@
   margin: 0 auto;
   padding: 0 15px;
   max-width: $container-max-width;
+
+  header.notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
 }
 
 
