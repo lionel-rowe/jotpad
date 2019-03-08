@@ -1,7 +1,6 @@
 import { htmlSafe } from '@ember/template';
 import marked from 'marked';
 import insane from 'insane';
-// import * as hljs from 'highlightjs';
 
 import Prism from 'prismjs';
 
@@ -20,10 +19,11 @@ Prism.plugins.customClass.prefix('prism-');
 Prism.manual = true;
 
 Prism.highlightAllUnder = (...args) => {
-  // noop
-  // kludge - function runs automatically even when manual set to auto
-  // setting to noop prevents bug in which highlighting happens twice
-  // on first page load
+//  noop
+/*
+  Kludge - function runs automatically even when manual set to true. Setting to
+  noop prevents bug in which highlighting happens twice on first page load.
+*/
 };
 
 const liveRenderer = new marked.Renderer();

@@ -20,12 +20,15 @@
       </div>
     </div>
 
+    {{icon-button variant="danger" title="Delete" handler=(action "delete") icon="trash-alt"}}
+
   </header>
 
   <div class="panes">
     <div class="pane">
       {{
         textarea
+        autofocus=true
         maxlength="65536"
         value=model.content
         change="updateContent"

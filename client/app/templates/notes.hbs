@@ -3,7 +3,10 @@
 
 <div class="container">
 
-  <h1>My Notes</h1>
+  <header class="notes-header">
+    <h1>My Notes</h1>
+    {{icon-button variant="primary" title="New" handler=(action "new") icon="plus"}}
+  </header>
 
   {{#each model as |note|}}
     <div class="paper-container">
