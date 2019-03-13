@@ -14,27 +14,6 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: '/'
     },
 
-    // fontawesome: {
-    //   icons: {
-    //     'free-solid-svg-icons': [
-    //       'home',
-    //       'plus',
-    //       'edit',
-    //       'user',
-    //       'undo',
-    //       // 'pencil',
-    //       'pencil-square',
-    //       'pencil-square-o',
-    //       // redo: 'undo' + CSS transform: scaleX(-1);
-    //       // 'bold',
-    //       // 'italic',
-    //       // 'heading',
-
-    //     ]
-    //   }
-    // },
-
-
     modulePrefix: 'jotpad',
     environment,
     rootURL: '/',
@@ -60,8 +39,8 @@ module.exports = function(environment) {
     ENV.API_HOST = 'http://localhost:3000';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 

@@ -1,21 +1,21 @@
 {{!-- {{debugger}} --}}
 
 <div class="container">
-  <h1>Login</h1>
-  <form class="user-form" {{action "authenticate" on="submit"}}>
+  <h1>Create New Account</h1>
+  <form class="user-form" {{action "register" on="submit"}}>
     <div class="field">
       <label for="email">Email</label>
       {{input id="email" placeholder="snowball@kittens.com" value=model.email}}
     </div>
     <div class="field">
       <label for="password">Password</label>
-      {{input id="password" placeholder="••••••••••••••••••••" type="password" value=model.password}}
+      {{input id="password" autocomplete="off" placeholder="••••••••••••••••••••" type="password" value=model.password}}
     </div>
     <div class="actions">
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
       or
-      {{#link-to "register"}}
-      Create a New Account
+      {{#link-to "login"}}
+      Log In
       {{/link-to}}
     </div>
     {{#if errorMessage}}

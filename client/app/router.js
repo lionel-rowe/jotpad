@@ -7,16 +7,17 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('register');
   this.route('login');
 
   // this.route('authenticated', { path: '' }, () => {
   this.route('notes', { path: '/' }, () => {
     this.route('new', { path: '/notes/new' });
     this.route('note', { path: '/notes/:id' });
+    this.route('404');
   });
   // });
 
-  this.route('404');
 });
 
 export default Router;

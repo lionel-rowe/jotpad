@@ -13,8 +13,9 @@ export default Route.extend(ApplicationRouteMixin, AuthenticatedRouteMixin, {
       return this._loadCurrentUser().then(() => {
         this.controllerFor('application').set('currentUser', this.get('currentUser'));
       });
+    } else if (window.location.pathname !== '/register') {
+      this._super(...args);
     }
-    this._super(...args);
 
   },
 
