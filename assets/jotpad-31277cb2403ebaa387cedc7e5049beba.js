@@ -148,4 +148,4 @@ return e=e.replace(/\[\[(.+?)\]\]/g,"<kbd>$1</kbd>"),t.default.setOptions({rende
 e.default=h}),define("jotpad/utils/safeURI",["exports"],function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=function(e){return encodeURI(e).replace(/%25/g,"%")}
 e.default=t}),define("jotpad/config/environment",[],function(){try{var e="jotpad/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),n={default:JSON.parse(unescape(t))}
-return Object.defineProperty(n,"__esModule",{value:!0}),n}catch(a){throw new Error('Could not read config from meta tag with name "'+e+'".')}}),runningTests||require("jotpad/app").default.create({name:"jotpad",version:"0.0.0+dbd39ab1"})
+return Object.defineProperty(n,"__esModule",{value:!0}),n}catch(a){throw new Error('Could not read config from meta tag with name "'+e+'".')}}),runningTests||require("jotpad/app").default.create({name:"jotpad",version:"0.0.0+17ae8c49"})
