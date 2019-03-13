@@ -3,16 +3,24 @@
 
 <div class="editor-ui">
   <header>
-    <div class="details">
+    <div
+      class="details"
+    >
       {{
         input
+        maxlength="255"
         value=model.title
         change="updatetitle"
       }}
       <div>
-        Updated {{formatDate model.updated_at}}
+        {{
+          last-updated
+          time=model.updated_at
+        }}
       </div>
     </div>
+
+    {{icon-button variant="danger" title="Delete" handler=(action "delete") icon="trash-alt"}}
 
   </header>
 
@@ -20,15 +28,21 @@
     <div class="pane">
       {{
         textarea
+        autofocus=true
+        maxlength="65536"
         value=model.content
         change="updateContent"
       }}
     </div>
     <div class="rendered pane">
       <div class="markdown-body">
-        {{model._formattedUpdater}}
-        {{model.formatted}}
-        {{!-- {{debugger}} --}}
+
+      {{
+        rendered-html
+        input=model.content
+        live=true
+      }}
+
       </div>
     </div>
   </div>

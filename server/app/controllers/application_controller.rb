@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
 
-  # skip_before_filter :verify_authenticity_token
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   # Doorkeeper code
   before_action :doorkeeper_authorize!

@@ -1,9 +1,30 @@
 import { htmlSafe } from '@ember/template';
 import marked from 'marked';
 import insane from 'insane';
-import * as hljs from 'highlightjs';
+
+import Prism from 'prismjs';
+
+import 'prismjs/plugins/custom-class/prism-custom-class.min.js';
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js';
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js';
+import 'prismjs/components/prism-markdown.min.js';
 
 import safeURI from './safeURI';
+
+document.removeEventListener('DOMContentLoaded', Prism.highlightAll);
+document.removeEventListener('DOMContentLoaded', Prism.fileHighlight);
+
+Prism.plugins.customClass.prefix('prism-');
+
+Prism.manual = true;
+
+Prism.highlightAllUnder = (...args) => {
+//  noop
+/*
+  Kludge - function runs automatically even when manual set to true. Setting to
+  noop prevents bug in which highlighting happens twice on first page load.
+*/
+};
 
 const liveRenderer = new marked.Renderer();
 const deadRenderer = new marked.Renderer();
@@ -15,6 +36,8 @@ const insaneOptions = {
     input: ['type', 'checked', 'disabled'],
     code: ['class'],
     span: ['class'],
+    pre: ['class'],
+    div: ['data-line'],
     th: ['align'],
     tr: ['align']
   },
@@ -33,17 +56,15 @@ const insaneOptions = {
   filter: node => {
     [
       [ 'code', 'language-' ],
-      [ 'span', 'hljs-' ]
+      [ 'span', 'prism-' ]
     ].forEach(([ tag, prefix ]) => {
-      if (
-        node.tag === tag
-        && typeof node.attrs.class === 'string'
-        && (/\s/.test(node.attrs.class) || !node.attrs.class.startsWith(prefix))
-      ) {
-        delete node.attrs.class;
-      }
-    });
+      if (node.tag === tag) {
+        const classes = node.attrs.class ? node.attrs.class.split(' ') : [];
 
+        node.attrs.class = classes.filter(c => c.startsWith(prefix)).join(' ') || undefined;
+      }
+
+    });
     return true;
   },
   transformText: null
@@ -55,6 +76,7 @@ for (let i = 1; i <= 6; i++) {
 }
 
 const sanitize = html => insane(html, insaneOptions);
+// const sanitize = html => html;
 
 const checkbox = (checked) => {
   // TODO: enable (must be reliable against dupes)
@@ -119,14 +141,18 @@ deadRenderer.heading = (text, level, _raw, _slugger) => {
 
 marked.setOptions({
   highlight: function(code, lang) {
-    if (['plaintext', 'plain', 'txt'].includes(lang.trim().toLowerCase())) {
+
+    const _lang = lang.trim().toLowerCase();
+
+    if (typeof Prism.languages[_lang] !== 'object') {
       return code;
     } else {
-      try {
-        return hljs.highlight(lang, code).value;
-      } catch (e) { // hljs throws error on unrecognized or empty `lang` param
-        return hljs.highlightAuto(code).value;
-      }
+
+      return Prism.highlight(code, Prism.languages[_lang], _lang)
+        .split(/\r?\n/).map((line, idx) => {
+          return `<div data-line="${idx + 1}">${line}</div>`;
+
+        }).join('\n');
     }
   },
   pedantic: false,
@@ -148,7 +174,9 @@ const formatMarkdown = (markdown, isLive=true) => {
     renderer: isLive ? liveRenderer : deadRenderer
   })
 
-  return htmlSafe(sanitize(marked(markdown)));
+  const output = htmlSafe(sanitize(marked(markdown)));
+
+  return output;
 };
 
 export default formatMarkdown;

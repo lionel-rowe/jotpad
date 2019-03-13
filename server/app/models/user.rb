@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   before_save :ensure_authentication_token
+  after_create :add_welcome_message
 
   def ensure_authentication_token
      if authentication_token.blank?
@@ -24,6 +25,12 @@ class User < ApplicationRecord
   end
 
   private
+
+  def add_welcome_message
+    welcome_msg = File.read('app/assets/welcome.md')
+    note = Note.new(title: 'Welcome', content: welcome_msg, owner: self)
+    note.save!
+  end
 
   def generate_authentication_token
     loop do

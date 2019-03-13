@@ -2,8 +2,11 @@
   // overrides `github-markdown-css` defaults
   background: #fff;
 
-  .heading {
+  h1, h2, h3, h4, h5, h6, b, strong, table th, dl dt {
+    font-weight: bold !important;
+  }
 
+  .heading {
     color: #9a3636;
     position: relative;
 
@@ -22,7 +25,23 @@
 
   pre {
     padding: 5px;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 }
 
+
+
+
+[data-line] {
+  display: inline;
+
+  &::before {
+    content: attr(data-line);
+    display: inline-block;
+    width: 1.5em;
+    color: rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right: 3px;
+  }
+}
