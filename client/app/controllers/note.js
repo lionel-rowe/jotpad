@@ -13,8 +13,7 @@ export default Controller.extend({
 
         buttons: ['Cancel', 'Delete'],
 
-        dangerMode: true,
-        animation: false
+        dangerMode: true
       }).then((shouldDelete) => {
         if (shouldDelete) {
           note.deleteRecord();
