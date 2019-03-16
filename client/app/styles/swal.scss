@@ -1,0 +1,12 @@
+.swal-modal {
+  animation: none !important;
+  -webkit-animation: none !important;
+}
+
+.swal-button--danger {
+  background: $danger !important;
+
+  &:hover {
+    background: darken($danger, 2) !important;
+  }
+}
