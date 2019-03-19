@@ -1,8 +1,8 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import formatMarkdown from '../utils/formatMarkdown';
 import { throttle } from '@ember/runloop';
-import { debounce } from '@ember/runloop';
+// import { debounce } from '@ember/runloop';
 
 export default Component.extend({
   _prevInput: '',
