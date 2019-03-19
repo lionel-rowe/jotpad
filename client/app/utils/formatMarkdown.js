@@ -8,6 +8,7 @@ import 'prismjs/plugins/custom-class/prism-custom-class.min.js';
 // import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js';
 // import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js';
 import 'prismjs/components/prism-markdown.min.js';
+// import loadComponents from 'prismjs/components/index.js';
 
 import safeURI from './safeURI';
 
@@ -18,7 +19,7 @@ Prism.plugins.customClass.prefix('prism-');
 
 Prism.manual = true;
 
-Prism.highlightAllUnder = (...args) => {
+Prism.highlightAllUnder = () => {
 //  noop
 /*
   Kludge - function runs automatically even when manual set to true. Setting to
@@ -144,8 +145,24 @@ marked.setOptions({
 
     const _lang = lang.trim().toLowerCase();
 
+    // lazy load new language definitions
     if (typeof Prism.languages[_lang] !== 'object') {
+    //   fetch(`/prismjs/components/prism-${_lang}.min.js`)
+    //   .then(res => {
+    //     if (res.ok) {
+    //       return res.text();
+    //     } else {
+    //       throw new Error('no such language')
+    //     };
+    //   })
+    //   .then(js => {
+    //     eval(js);
+    //   })
+    //   .catch(_err => {});
+
       return code;
+
+      // return new Promise(resolve => setTimeout(() => resolve(code), 1000));
     } else {
 
       return Prism.highlight(code, Prism.languages[_lang], _lang)

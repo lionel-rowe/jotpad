@@ -50,11 +50,17 @@ module.exports = function(defaults) {
       destDir: '/webfonts'
   });
 
+  // const prismComponents = new Funnel('node_modules/prismjs/components', {
+  //     srcDir: '/',
+  //     destDir: '/prismjs/components'
+  // });
+
   const tree = app.toTree()
 
   const mergedTree = new BroccoliMergeTrees([
     tree,
-    fontawesome
+    fontawesome,
+    // prismComponents
   ]);
 
   const loggedTree = log(mergedTree, { output: 'tree', label: 'tree' });

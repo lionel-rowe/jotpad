@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
+// import { inject as service } from '@ember/service';
 
 export default Route.extend({
+
+  // router: service(),
 
   _interval: -1,
 
@@ -57,7 +60,7 @@ export default Route.extend({
   },
 
   actions: {
-    willTransition(transition) {
+    willTransition(_transition) {
       this._pushOrPull.call(this);
 
       // transition.abort();

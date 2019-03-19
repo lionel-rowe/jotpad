@@ -9,6 +9,6 @@ const entityMap = {
   '/': '&#47;'
 };
 
-const escapeHTML = html => html.replace(/[&<>"'\/]/g, char => entityMap[char]);
+const escapeHTML = html => html.replace(/[&<>"'/]/g, char => entityMap[char]);
 
 export default escapeHTML;
