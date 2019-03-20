@@ -32,23 +32,23 @@ const deadRenderer = new marked.Renderer();
 
 const insaneOptions = {
   allowedAttributes: {
-    a: ['href', 'name', 'target', 'rel', 'title', 'tabindex'],
-    img: ['src', 'alt', 'title'],
-    input: ['type', 'checked', 'disabled'],
-    code: ['class'],
-    span: ['class'],
-    pre: ['class'],
-    div: ['data-line'],
-    th: ['align'],
-    tr: ['align']
+    a: [ 'href', 'name', 'target', 'rel', 'title', 'tabindex' ],
+    abbr: [ 'title' ],
+    img: [ 'src', 'alt', 'title' ],
+    input: [ 'type', 'checked', 'disabled' ],
+    code: [ 'class' ],
+    span: [ 'class' ],
+    div: [ 'data-line' ],
+    th: [ 'align' ],
+    tr: [ 'align' ]
   },
   allowedClasses: {
-    ul: ['checklist'],
-    a: ['unstyled-link'],
+    ul: [ 'checklist' ],
+    a: [ 'unstyled-link' ],
   },
-  allowedSchemes: ['http', 'https', 'mailto'],
+  allowedSchemes: [ 'http', 'https', 'mailto' ],
   allowedTags: [
-    'a', 'article', 'b', 'blockquote', 'br', 'caption', 'code', 'del',
+    'a', 'abbr', 'article', 'b', 'blockquote', 'br', 'caption', 'code', 'del',
     'details', 'div', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i',
     'img', 'input', 'ins', 'kbd', 'label', 'li', 'main', 'ol', 'p', 'pre',
     'section', 'span', 'strike', 'strong', 'sub', 'summary', 'sup', 'table',
