@@ -73,7 +73,7 @@
     "github-markdown-css": "^3.0.1",
     "insane": "^2.6.2",
     "marked": "^0.6.2",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.27.0",
     "sweetalert": "^2.1.2"
   }
 }
